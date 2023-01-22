@@ -25,7 +25,7 @@ class LinearRegression:
             np.ndarray: The bias value.
 
         """
-        m, _ = X.shape
+        m, n = X.shape
         X = np.concatenate((np.ones((m,1)), X), axis=1)
         soln = np.linalg.pinv(X.T @ X) @ X.T @ y
         self.w, self.b = soln[1:], soln[0]
@@ -50,13 +50,7 @@ class GradientDescentLinearRegression(LinearRegression):
     """
 
     def _standardize(self, X, y):
-        self.mu_x = np.mean(X)
-        self.mu_y = np.mean(y)
-        self.sigma_x = np.std(X)
-        self.sigma_y = np.std(y)
-        z_x = (X-self.mu_x)/self.sigma_x
-        z_y = (y-self.mu_y)/self.sigma_y
-        return z_x, z_y
+        return (X-np.mean(X))/np.std(X), (y-np.mean(y))/np.std(y)
 
     def _calcGrads(self, X, y):
         m, n = X.shape
@@ -67,7 +61,7 @@ class GradientDescentLinearRegression(LinearRegression):
         return dw, db
 
     def fit(
-        self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 4000
+        self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
     ) -> None:
         """
         Fit the model to the given input.
@@ -106,14 +100,3 @@ class GradientDescentLinearRegression(LinearRegression):
 
         """
         return X @ self.w + self.b
-
-
-# X = np.array([[1,2], [3,4]])
-# y = np.array([1,2])
-
-# def mse(y, y_hat):
-#     return np.mean((y-y_hat) ** 2)
-
-# lr = LinearRegression()
-# lr.fit(X, y)
-# print(mse(lr.predict(X), y))
