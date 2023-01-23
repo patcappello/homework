@@ -100,3 +100,4 @@ class GradientDescentLinearRegression(LinearRegression):
 
         """
         return X @ self.w + self.b
+        
