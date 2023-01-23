@@ -95,4 +95,3 @@ def test_epochs_improve_fit():
     mse2 = mse(y, lr.predict(X))
 
     assert mse1 > mse2, "MSE should improve with more epochs."
-

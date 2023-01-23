@@ -7,6 +7,6 @@
         }
     ],
     "sources": [
-        "ChatGPT suggested I use a decaying learning rate to fix my exploding gradient problem. "
+        "ChatGPT suggested I use a decaying learning rate to fix my exploding gradient problem."
     ]
 }
