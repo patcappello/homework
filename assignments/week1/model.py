@@ -5,6 +5,7 @@ class LinearRegression:
     """
     A linear regression model that uses the linear regression closed form to fit the model.
     """
+
     w: np.ndarray
     b: float
 
@@ -26,7 +27,7 @@ class LinearRegression:
 
         """
         m, n = X.shape
-        X = np.concatenate((np.ones((m,1)), X), axis=1)
+        X = np.concatenate((np.ones((m, 1)), X), axis=1)
         soln = np.linalg.pinv(X.T @ X) @ X.T @ y
         self.w, self.b = soln[1:], soln[0]
 
@@ -50,14 +51,14 @@ class GradientDescentLinearRegression(LinearRegression):
     """
 
     def _standardize(self, X, y):
-        return (X-np.mean(X))/np.std(X), (y-np.mean(y))/np.std(y)
+        return (X - np.mean(X)) / np.std(X), (y - np.mean(y)) / np.std(y)
 
     def _calcGrads(self, X, y):
         m, n = X.shape
         # m is the number of examples, n is the number of features
         y_pred = self.predict(X)
-        dw = (2/m)*(X.T @ (y_pred-y))
-        db = (2/m)*np.sum(y_pred-y)
+        dw = (2 / m) * (X.T @ (y_pred - y))
+        db = (2 / m) * np.sum(y_pred - y)
         return dw, db
 
     def fit(
@@ -83,11 +84,11 @@ class GradientDescentLinearRegression(LinearRegression):
         decay_rate = 1e-3
         X, y = self._standardize(X, y)
         for i in range(epochs):
-            lr = lr/(1+decay_rate*i)
+            lr = lr / (1 + decay_rate * i)
             dw, db = self._calcGrads(X, y)
-            self.w -= lr*dw
-            self.b -= lr*db
-            
+            self.w -= lr * dw
+            self.b -= lr * db
+
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
         Predict the output for the given input.
