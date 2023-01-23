@@ -10,7 +10,7 @@ class LinearRegression:
 
     def __init__(self):
         self.w = None
-        self.b = 0.0
+        self.b = 0.00
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         """
