@@ -37,7 +37,7 @@ class MLP(nn.Module):
             next_num_inputs = hidden_size
             self.layers += [
                 nn.Linear(num_inputs, next_num_inputs),
-                nn.BatchNorm1d(hidden_size),
+                # nn.BatchNorm1d(hidden_size),
             ]
             num_inputs = next_num_inputs
         self.out = nn.Linear(hidden_size, num_classes)
