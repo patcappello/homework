@@ -33,7 +33,7 @@ class MLP(nn.Module):
         self.out = nn.Linear(hidden_size, num_classes)
         self.activation = activation
 
-    def forward(self, x):
+    def forward(self, x: torch.tensor) -> torch.tensor:
         """
         Forward pass of the network.
 
