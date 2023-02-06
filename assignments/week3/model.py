@@ -4,6 +4,11 @@ import torch.nn as nn
 
 
 class MLP(nn.Module):
+    """
+    This class is a multi-layer perceptron model which takes as input, 
+    the input size, hidden layer size, output size, number of hidden layers, 
+    activation function, and an initializer. This model only contains linear layers. 
+    """
     def __init__(
         self,
         input_size: int,
