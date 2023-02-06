@@ -35,7 +35,7 @@ class MLP(nn.Module):
         num_inputs = input_size
         for i in range(hidden_count):
             next_num_inputs = hidden_size
-            self.layers += [nn.Linear(num_inputs, next_num_inputs)]
+            self.layers += [nn.Linear(num_inputs, next_num_inputs), nn.BatchNorm1d(hidden_size)]
             num_inputs = next_num_inputs
         self.out = nn.Linear(hidden_size, num_classes)
         self.activation = activation
