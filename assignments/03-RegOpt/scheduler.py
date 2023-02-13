@@ -20,5 +20,10 @@ class CustomLRScheduler(_LRScheduler):
         # this function (because it is called internally by Torch)
 
         # ... Your Code Here ...
-        # Here's our dumb baseline implementation:
-        return [i for i in self.base_lrs]
+        # accuracy must beat 0.45 on epoch 1 and 0.50 on epoch 2
+        lr = 0.001
+        decay_rate = 0.5
+        lrs = [lr / (1 + i * decay_rate) for i in range(5)]
+        # print(lrs)
+        return lrs
+        # return [i for i in self.base_lrs]
