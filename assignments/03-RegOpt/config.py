@@ -9,7 +9,7 @@ class CONFIG:
     batch_size = 32
     num_epochs = 5
     initial_learning_rate = 0.0005
-    initial_weight_decay = initial_learning_rate/num_epochs
+    initial_weight_decay = initial_learning_rate / num_epochs
 
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler
