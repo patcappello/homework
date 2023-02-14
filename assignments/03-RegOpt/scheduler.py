@@ -19,6 +19,7 @@ class CustomLRScheduler(_LRScheduler):
         # ... Your Code Here ...
         self.lr = kwargs["lr"]
         self.decay = kwargs["decay"]
+        self.num_epochs = kwargs["num_epochs"]
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
     def get_lr(self) -> List[float]:
@@ -32,7 +33,7 @@ class CustomLRScheduler(_LRScheduler):
         # accuracy must beat 0.45 on epoch 1 and 0.50 on epoch 2
         # lr = 0.0005
         # decay_rate = 0.01
-        lrs = [self.lr / (1 + i * self.decay) for i in range(3)]
+        lrs = [self.lr / (1 + i * self.decay) for i in range(self.num_epochs)]
         # print(lrs)
         return lrs
         # return [i for i in self.base_lrs]
