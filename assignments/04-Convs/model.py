@@ -7,7 +7,7 @@ class Model(nn.Module):
     """
     A simple CNN with 4 convolutional layers and 4 fully-connected layers.
     """
-    
+
     def __init__(self, num_channels: int, num_classes: int) -> None:
         super(Model, self).__init__()
         self.num_channels = num_channels
