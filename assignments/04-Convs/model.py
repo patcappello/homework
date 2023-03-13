@@ -4,6 +4,9 @@ import torch.nn.functional as F
 
 
 class Model(nn.Module):
+    """
+    A simple CNN with 4 convolutional layers and 4 fully-connected layers.
+    """
     def __init__(self, num_channels: int, num_classes: int) -> None:
         super(Model, self).__init__()
         self.num_channels = num_channels
@@ -18,6 +21,13 @@ class Model(nn.Module):
         self.fc4 = nn.Linear(15, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """
+        Forward pass of the network.
+        Arguments:
+            x: The input data.
+        Returns:
+            The output of the network.
+        """
         x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))
         x = F.max_pool2d(F.relu(self.conv2(x)), (2, 2))
         x = F.max_pool2d(F.relu(self.conv3(x)), (2, 2))
