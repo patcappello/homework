@@ -14,7 +14,7 @@ class Model(nn.Module):
         self.num_classes = num_classes
         self.conv1 = nn.Conv2d(num_channels, 16, 3)
         self.conv2 = nn.Conv2d(16, 32, 3)
-        self.conv3 = nn.Conv2d(32, 64, 2)
+        self.conv3 = nn.Conv2d(32, 32, 2)
         self.conv4 = nn.Conv2d(64, 128, 2)
         self.fc1 = nn.Linear(64, 32)
         self.fc2 = nn.Linear(16, 16)
@@ -23,7 +23,7 @@ class Model(nn.Module):
         self.batchnorm2d1 = nn.BatchNorm2d(16)
         self.batchnorm2d2 = nn.BatchNorm2d(32)
         self.batchnorm2d3 = nn.BatchNorm2d(128)
-        self.batchnorm1d0 = nn.BatchNorm1d(64)
+        self.batchnorm1d0 = nn.BatchNorm1d(32)
         self.batchnorm1d1 = nn.BatchNorm1d(32)
         self.batchnorm1d2 = nn.BatchNorm1d(16)
 
@@ -44,8 +44,8 @@ class Model(nn.Module):
         # x = F.max_pool2d(F.relu(self.conv4(x)), (2, 2))
         x = torch.flatten(x, 1)
         x = self.batchnorm1d0(x)
-        x = F.relu(self.fc1(x))
-        x = self.batchnorm1d1(x)
+        # x = F.relu(self.fc1(x))
+        # x = self.batchnorm1d1(x)
         # x = F.relu(self.fc2(x))
         # x = self.batchnorm1d2(x)
         # # x = F.relu(self.fc3(x))
